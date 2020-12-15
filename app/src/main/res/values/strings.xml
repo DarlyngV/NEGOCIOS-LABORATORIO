@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SQLite-Single-Table-CRUD</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_create_subject">CreateSubjectActivity</string>
+    <string name="state">Estado</string>
+    <string name="cross_image_content_description">Delete planta from SQLite database</string>
+    <string name="empty_planta_list_message">Planta List is Empty!</string>
+    <string name="planta_name">Planta Name</string>
+    <string name="update">Update</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="create_button">Create</string>
+    <string name="all_delete">All Delete</string>
+    <string name="edit_button_description">Edit Single planta information</string>
+</resources>
