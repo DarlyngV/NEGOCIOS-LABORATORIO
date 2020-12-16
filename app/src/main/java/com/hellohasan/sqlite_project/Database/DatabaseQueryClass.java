@@ -34,9 +34,13 @@ public class DatabaseQueryClass {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Config.COLUMN_PLANTA_NAME, planta.getName());
-
+        contentValues.put(Config.COLUMN_PLANTA_STATE, planta.getState());
         try {
+          //  if(getPlantaName(planta.getName())==null)
             id = sqLiteDatabase.insertOrThrow(Config.TABLE_PLANTA, null, contentValues);
+         //   else{
+              //  Toast.makeText(context,"Ya existe una Planta con ese nombre",Toast.LENGTH_SHORT);
+          //  }
         } catch (SQLiteException e){
             Logger.d("Exception: " + e.getMessage());
             Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -71,7 +75,7 @@ public class DatabaseQueryClass {
                         int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_PLANTA_ID));
                         String name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_NAME));
                        String state = cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_STATE));
-                        plantaList.add(new Planta(id, name));
+                        plantaList.add(new Planta(id, name,state));
                     }   while (cursor.moveToNext());
 
                     return plantaList;
@@ -88,7 +92,7 @@ public class DatabaseQueryClass {
         return Collections.emptyList();
     }
 
-    public Planta getPlantaState(String state){
+    public Planta getPlantaName(String name){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -98,16 +102,16 @@ public class DatabaseQueryClass {
         try {
 
             cursor = sqLiteDatabase.query(Config.TABLE_PLANTA, null,
-                    Config.COLUMN_PLANTA_STATE + " = ? ", new String[]{state},
+                    Config.COLUMN_PLANTA_NAME + " = ? ", new String[]{name},
                     null, null, null);
 
 
 
             if(cursor.moveToFirst()){
                 int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_PLANTA_ID));
-                String name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_NAME));
-                 state= cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_STATE));
-                planta = new Planta(id, name);
+                name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_NAME));
+               String  state= cursor.getString(cursor.getColumnIndex(Config.COLUMN_PLANTA_STATE));
+                planta = new Planta(id, name,state);
             }
         } catch (Exception e){
             Logger.d("Exception: " + e.getMessage());

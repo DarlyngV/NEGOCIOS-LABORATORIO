@@ -19,7 +19,7 @@ public class PlantaCreateDialogFragment extends DialogFragment {
     private static PlantaCreateListener plantaCreateListener;
 
     private EditText nameEditText;
-    private EditText stateEditText;
+  //  private EditText stateEditText;
     private Button createButton;
     private Button cancelButton;
 
@@ -51,7 +51,7 @@ public class PlantaCreateDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_planta_create_dialog, container, false);
 
         nameEditText = view.findViewById(R.id.plantaNameEditText);
-        stateEditText = view.findViewById(R.id.stateEditText);
+     //   stateEditText = view.findViewById(R.id.stateEditText);
         createButton = view.findViewById(R.id.createButton);
         cancelButton = view.findViewById(R.id.cancelButton);
 

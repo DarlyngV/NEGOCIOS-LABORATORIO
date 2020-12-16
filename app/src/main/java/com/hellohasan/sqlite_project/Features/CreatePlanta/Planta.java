@@ -10,7 +10,11 @@ public class Planta {
         this.name = name;
         this.State="A";
     }
-
+    public Planta(int id, String name, String state ) {
+        this.id = id;
+        this.name = name;
+        this.State=state;
+    }
     public int getId() {
         return id;
     }

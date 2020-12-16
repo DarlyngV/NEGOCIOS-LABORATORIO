@@ -28,7 +28,7 @@ public class PlantaUpdateDialogFragment extends DialogFragment {
     private Button updateButton;
     private Button cancelButton;
 
-    private String nameString = "";
+    private static String nameString = "";
     private String state="A";
 
     private DatabaseQueryClass databaseQueryClass;
@@ -37,8 +37,8 @@ public class PlantaUpdateDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static PlantaUpdateDialogFragment newInstance(String state, int position, PlantaUpdateListener listener){
-        state = state;
+    public static PlantaUpdateDialogFragment newInstance(String name, int position, PlantaUpdateListener listener){
+        nameString = name;
         plantaItemPosition = position;
         plantaUpdateListener = listener;
         PlantaUpdateDialogFragment plantaUpdateDialogFragment = new PlantaUpdateDialogFragment();
@@ -61,14 +61,14 @@ public class PlantaUpdateDialogFragment extends DialogFragment {
         databaseQueryClass = new DatabaseQueryClass(getContext());
 
         nameEditText = view.findViewById(R.id.plantaNameEditText);
-       stateEditText = view.findViewById(R.id.stateEditText);
+       stateEditText = view.findViewById(R.id.state);
         updateButton = view.findViewById(R.id.updatePlantaInfoButton);
         cancelButton = view.findViewById(R.id.cancelButton);
 
         String title = getArguments().getString(Config.TITLE);
         getDialog().setTitle(title);
 
-        mPlanta = databaseQueryClass.getPlantaState(state);
+        mPlanta = databaseQueryClass.getPlantaName(nameString);
 
         if(mPlanta!=null) {
             nameEditText.setText(mPlanta.getName());
