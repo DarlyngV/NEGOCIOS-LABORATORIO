@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hellohasan.sqlite_project.Features.CreatePlanta.Planta;
@@ -36,11 +37,14 @@ public class DatabaseQueryClass {
         contentValues.put(Config.COLUMN_PLANTA_NAME, planta.getName());
         contentValues.put(Config.COLUMN_PLANTA_STATE, planta.getState());
         try {
-          //  if(getPlantaName(planta.getName())==null)
-            id = sqLiteDatabase.insertOrThrow(Config.TABLE_PLANTA, null, contentValues);
-         //   else{
-              //  Toast.makeText(context,"Ya existe una Planta con ese nombre",Toast.LENGTH_SHORT);
-          //  }
+            if(getPlantaName(planta.getName())==null) {
+                databaseHelper = DatabaseHelper.getInstance(context);
+                sqLiteDatabase = databaseHelper.getWritableDatabase();
+                id = sqLiteDatabase.insertOrThrow(Config.TABLE_PLANTA, null, contentValues);
+            }
+            else{
+               Toast.makeText(context,"Ya existe una Planta con ese nombre",Toast.LENGTH_SHORT);
+            }
         } catch (SQLiteException e){
             Logger.d("Exception: " + e.getMessage());
             Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -93,7 +97,7 @@ public class DatabaseQueryClass {
     }
 
     public Planta getPlantaName(String name){
-
+        Log.d("Agregando 02", "getPlantaName: "+name);
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 

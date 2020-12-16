@@ -3,6 +3,8 @@ package com.hellohasan.sqlite_project.Features.UpdatePlantaInfo;
 import android.app.Dialog;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +73,7 @@ public class PlantaUpdateDialogFragment extends DialogFragment {
         mPlanta = databaseQueryClass.getPlantaName(nameString);
 
         if(mPlanta!=null) {
+            Log.d("Agregando", "onCreateView: ");
             nameEditText.setText(mPlanta.getName());
             stateEditText.setText(mPlanta.getState());
 

@@ -75,7 +75,7 @@ public class PlantaListRecyclerViewAdapter extends RecyclerView.Adapter<CustomVi
         holder.editButtonImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PlantaUpdateDialogFragment plantaUpdateDialogFragment = PlantaUpdateDialogFragment.newInstance(planta.getState(), itemPosition, new PlantaUpdateListener() {
+                PlantaUpdateDialogFragment plantaUpdateDialogFragment = PlantaUpdateDialogFragment.newInstance(planta.getName(), itemPosition, new PlantaUpdateListener() {
                     @Override
                     public void onPlantaInfoUpdated(Planta planta, int position) {
                         plantaList.set(position, planta);
